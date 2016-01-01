@@ -90,7 +90,7 @@ $(function() {
 			var menuIcon = $('.menu-icon-link');
 			var feedListLink = $('ul.feed-list > li > a:last');
 			
-			/* Click 1: Opening menu by clicking the icon
+			/* Click 1: Opening menu by clicking the icon,
 			* 'menu-hidden' class has to be removed from body.
 			*/
 			menuIcon.click();
@@ -120,6 +120,7 @@ $(function() {
 		// Call loadFeed async.
 		beforeEach(function(done) {
 			loadFeed(0, function() {
+				// Populate entryBefore for "New Feed Selection"
 				entryBefore = $('.entry > h2:first').html();
 				done();
 			});
@@ -135,7 +136,9 @@ $(function() {
 		});
 	
 	
-		/* Test suite: "New Feed Selection" */
+		/* Test suite: "New Feed Selection" 
+		* Why I nestled it: See README.
+		*/
 		describe('New Feed Selection', function(){
 			/* Test: When a new feed is loaded by the loadFeed function 
 			* the content actually changes.
@@ -145,17 +148,13 @@ $(function() {
 				$('.feed').empty();
 				
 				loadFeed(2, function() {
+					// Populate entryAfter
 					entryAfter = $('.entry > h2:first').html();
 					done();
 				});
 			});
 			
-			// Reset the loaded feed to feed index 0
-			/* afterEach(function() {
-				$('.feed').empty();
-				loadFeed(0);
-			}); */
-			
+			// Compare entryBefore with entryAfter
 			it('changes content', function(done) {
 				expect(entryAfter).not.toBe(entryBefore);
 				done();
@@ -167,7 +166,7 @@ $(function() {
 	
 	/* ADDITIONAL TEST SUITE:  "Article Preview" */
 	describe('Article Preview', function() {
-		/* Test: For new feature "article preview". Make sure
+		/* Test: For new feature "article preview" make sure
 		* each .entry has a content snippet from the article in its
 		* p element. It should also contain a link to the full article.
 		* That this content snippet is hidden by default, shows
