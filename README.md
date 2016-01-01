@@ -116,3 +116,14 @@ In Firefox 6 out of 12 tests fail because Firefox does not process
 the jQuery selectors with in the asynchronous callback function.
 If it had to pass in Firefox too, all selectors within the callbacks
 had to be rewritten in plain Javascript.
+
+## Resources
+* Udacity Forum, in particular:
+*[Udacity Forum - Async tests](https://discussions.udacity.com/t/async-tests-why-the-second-done-call/40751/3)
+*[jQuery Documentation](http://api.jquery.com)
+*[Jasmine Introduction](http://jasmine.github.io/2.0/introduction.html)
+*[w3schools.com](http://www.w3schools.com/js/default.asp)
+*[stackoverflow.com](http://stackoverflow.com/)
+
+_And a few other that I can't remember, but *Thank you*_
+
