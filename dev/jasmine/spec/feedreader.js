@@ -131,7 +131,7 @@ $(function() {
 	
 	
 		/* Test suite: "New Feed Selection" 
-		* Nestled because this way the beforeEach function from
+		* Nested because this way the beforeEach function from
 		* 'Initial Entries' runs before the beforeEach function
 		* from 'New Feed Selection'. Making it easy to populate
 		* two variables for comparison of content.

@@ -42,7 +42,7 @@ has at least one `.entry` child element.
 ##### Test Suite 'New Feed Selection'
 * actually changes the content of the `.entry` elements.
 
-##### Notice: I nestled 'New Feed Selection' within the 'Initial Entries' test suite.
+##### Notice: I nested 'New Feed Selection' within the 'Initial Entries' test suite.
 
 
 ``` javascript
@@ -60,7 +60,7 @@ describe('Initial Entries', function() {
 ###### The function calls for 'New Feed Selection'**
 `beforeEach('Initial Entries')` -> `beforeEach('New Feed Selection')` -> `it('New Feed Selection')`
 
-The reason I nestled 'New Feed Selection' is that I had trouble 
+The reason I nested 'New Feed Selection' is that I had trouble 
 calling `loadFeed()` twice asynchronously with in one `beforeEach()` 
 function. By nestling the 'New Feed Selection' the `beforeEach()` 
 function from 'Initial Entries' is call before any of the 
