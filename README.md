@@ -49,7 +49,7 @@ has at least one `.entry` child element.
 describe('Initial Entries', function() {
     beforeEach(...);
     it('are loaded', ...);
-    
+
     describe('New Feed Selection', function () {
         beforeEach(...);
         it('changes content', ...);
@@ -60,11 +60,11 @@ describe('Initial Entries', function() {
 ###### The function calls for 'New Feed Selection'**
 `beforeEach('Initial Entries')` -> `beforeEach('New Feed Selection')` -> `it('New Feed Selection')`
 
-The reason I nested 'New Feed Selection' is that I had trouble 
-calling `loadFeed()` twice asynchronously with in one `beforeEach()` 
-function. By nestling the 'New Feed Selection' the `beforeEach()` 
-function from 'Initial Entries' is call before any of the 
-'New Feed Selection' tests. Which makes it easy to populate two 
+The reason I nested 'New Feed Selection' is that I had trouble
+calling `loadFeed()` twice asynchronously with in one `beforeEach()`
+function. By nestling the 'New Feed Selection' the `beforeEach()`
+function from 'Initial Entries' is call before any of the
+'New Feed Selection' tests. Which makes it easy to populate two
 variables with content from two different `loadFeed()` calls.
 
 **All required specs pass.**
@@ -72,7 +72,7 @@ variables with content from two different `loadFeed()` calls.
 
 ### Additional Tests
 #### Test Suite 'The menu'
-* Added test to ensure the menu gets hidden when a feed is selected from it. 
+* Added test to ensure the menu gets hidden when a feed is selected from it.
 <br>**Line 89 in dev/index.html**: `it('visibility toggles when a feed is selected', function() {});`
 
 **This spec passes because the functionality is already implemented.**
@@ -83,7 +83,7 @@ displays a small section of the article within the feedreader app
 when the entry is clicked. For it to work:
 
 * **- there has to be a content snippet within the `.entry > p`**
-<br>The app code actually has the basic structure for this but the p within the 
+<br>The app code actually has the basic structure for this but the p within the
 entry does not get populated.
 
 
@@ -91,7 +91,7 @@ entry does not get populated.
 <br>This is a very basic test. Just because there is a link in `.entry`
 does not mean there is a link to the full article. Which is why I added
 a class on the link to the full article and check for this selector.
-It might make sense to check if the `href` is set and maybe to put 
+It might make sense to check if the `href` is set and maybe to put
 the link to the full article within the `.entry > p` - but this would
 mean the link is hidden until the content snippet is shown. I would
 test if a permanent link to the full article is usable / useful or not.
@@ -107,7 +107,7 @@ is clicked. If clicked for the first time the class is removed, if clicked
 again the class is added. But I **cannot simulate the click event** because
 this triggers the current link to the full article. So I had to comment
 out the click events. When developing this feature, changing the `.entry-link`
-implementation would have to be _the first thing_ done. 
+implementation would have to be _the first thing_ done.
 
 **All specs in this test suite fail**
 
@@ -119,11 +119,10 @@ had to be rewritten in plain Javascript.
 
 ## Resources
 * Udacity Forum, in particular:
-*[Udacity Forum - Async tests](https://discussions.udacity.com/t/async-tests-why-the-second-done-call/40751/3)
-*[jQuery Documentation](http://api.jquery.com)
-*[Jasmine Introduction](http://jasmine.github.io/2.0/introduction.html)
-*[w3schools.com](http://www.w3schools.com/js/default.asp)
-*[stackoverflow.com](http://stackoverflow.com/)
+* [Udacity Forum - Async tests](https://discussions.udacity.com/t/async-tests-why-the-second-done-call/40751/3)
+* [jQuery Documentation](http://api.jquery.com)
+* [Jasmine Introduction](http://jasmine.github.io/2.0/introduction.html)
+* [w3schools.com](http://www.w3schools.com/js/default.asp)
+* [stackoverflow.com](http://stackoverflow.com/)
 
-_And a few other that I can't remember, but *Thank you*_
-
+_And a few other that I can't remember, but **Thank you!**_
