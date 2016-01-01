@@ -24,7 +24,7 @@ $(function() {
 		});
 
 
-		/* Test: AllFeeds have a URL defined
+		/* Test: All feeds have a URL defined
 		* and the URL is not empty.
 		*/
 		it('have names', function() {
@@ -37,7 +37,7 @@ $(function() {
 		});
 
 
-		/* Test: AllFeeds have a name defined 
+		/* Test: All feeds have a name defined 
 		* and it is not empty.
 		*/
 		it('have URLs', function() {
@@ -113,15 +113,9 @@ $(function() {
 		* the .feed container.
 		*/
 		
-		// Variables for nestled test suite "New Feed Selection"
-		var entryBefore;
-		var entryAfter;
-		
 		// Call loadFeed async.
 		beforeEach(function(done) {
 			loadFeed(0, function() {
-				// Populate entryBefore for "New Feed Selection"
-				entryBefore = $('.entry:first > h2').html();
 				done();
 			});
 		});
@@ -137,14 +131,24 @@ $(function() {
 	
 	
 		/* Test suite: "New Feed Selection" 
-		* Why I nestled it: See README.
+		* Nestled because this way the beforeEach function from
+		* 'Initial Entries' runs before the beforeEach function
+		* from 'New Feed Selection'. Making it easy to populate
+		* two variables for comparison of content.
 		*/
 		describe('New Feed Selection', function(){
 			/* Test: When a new feed is loaded by the loadFeed function 
 			* the content actually changes.
 			*/
 			
+			var entryBefore;
+			var entryAfter;
+			
 			beforeEach(function(done) {
+				// Populate entryBefore
+				entryBefore = $('.entry:first > h2').html();
+				
+				// Empty the .feed
 				$('.feed').empty();
 				
 				loadFeed(2, function() {
@@ -193,9 +197,9 @@ $(function() {
 			done();
 		});
 		
-		// Contains at least one link (to the full article -> maybe class selector)
+		// Contains at least one link to the full article -> class selector '.full'
 		it('has a link to the complete article', function(done) {
-			expect(entry.has('a').length).not.toBe(0);
+			expect(entry.has('a.full').length).not.toBe(0);
 			done();
 		});
 		
@@ -212,9 +216,12 @@ $(function() {
 		* -> Click simulation commented out.
 		*/
 		it('visibility toggles on click', function(done) {
+			
+			//Click 1: Open the article preview by removing 'hide' class
 			//entryLink.click();
 			expect(contentSnippet.hasClass('hide')).toBe(false);
 			
+			//Click 2: Hide article preview by adding 'hide' class
 			//entryLink.click();
 			expect(contentSnippet.hasClass('hide')).toBe(true);
 			done();
