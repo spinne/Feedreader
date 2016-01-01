@@ -82,15 +82,13 @@ This suite tests for new feature called "article preview" which
 displays a small section of the article within the feedreader app
 when the entry is clicked. For it to work:
 
-**- there has to be a content snippet within the `.entry > p`**
-
-The app code actually has the basic structure for this but the p within the 
+* **- there has to be a content snippet within the `.entry > p`**
+<br>The app code actually has the basic structure for this but the p within the 
 entry does not get populated.
 
 
 * **- there has to be a link to the full article within the `.entry`**
-
-This is a very basic test. Just because there is a link in `.entry`
+<br>This is a very basic test. Just because there is a link in `.entry`
 does not mean there is a link to the full article. Which is why I added
 a class on the link to the full article and check for this selector.
 It might make sense to check if the `href` is set and maybe to put 
