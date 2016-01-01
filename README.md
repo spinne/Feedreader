@@ -73,7 +73,7 @@ variables with content from two different `loadFeed()` calls.
 ### Additional Tests
 #### Test Suite 'The menu'
 * Added test to ensure the menu gets hidden when a feed is selected from it. 
-Line 89 in **dev/index.html**: `it('visibility toggles when a feed is selected', function() {});`
+<br>**Line 89 in dev/index.html**: `it('visibility toggles when a feed is selected', function() {});`
 
 **This spec passes because the functionality is already implemented.**
 
@@ -97,13 +97,11 @@ mean the link is hidden until the content snippet is shown. I would
 test if a permanent link to the full article is usable / useful or not.
 
 * **- it is hidden by default**
-
-I think for this and the next spec a class that manages visibility
+<br>I think for this and the next spec a class that manages visibility
 is the best option. Which is why I test for the class.
 
 * **- visibility of the content snippet toggles when clicked**
-
-This test should check if the class managing the visibility is
+<br>This test should check if the class managing the visibility is
 toggled when the `.entry` or its surrounding element `.entry-link`
 is clicked. If clicked for the first time the class is removed, if clicked
 again the class is added. But I **cannot simulate the click event** because
