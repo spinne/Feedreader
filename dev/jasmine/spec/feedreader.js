@@ -167,12 +167,18 @@ $(function() {
 	
 	/* ADDITIONAL TEST SUITE:  "Article Preview" */
 	describe('Article Preview', function() {
-		/* Test: 
+		/* Test: For new feature "article preview". Make sure
+		* each .entry has a content snippet from the article in its
+		* p element. It should also contain a link to the full article.
+		* That this content snippet is hidden by default, shows
+		* up when the enclosing .entry-link is clicked and hides 
+		* again when the .entry-link is clicked a second time.
 		*/
 		var entryLink,
 			entry,
 			contentSnippet;
 		
+		// Needs to be async - to populate the .feed div
 		beforeEach(function(done) {
 			loadFeed(0, function() {
 				entryLink = $('.entry-link:first');
@@ -182,21 +188,30 @@ $(function() {
 			});
 		});
 		
+		// ContentSnippet isn't empty, null, undefined or 0.
 		it('has content', function(done) {
 			expect(contentSnippet.html()).toBeTruthy();
 			done();
 		});
 		
+		// Contains at least one link (to the full article -> maybe class selector)
 		it('has a link to the complete article', function(done) {
 			expect(entry.has('a').length).not.toBe(0);
 			done();
 		});
 		
+		// Is hidden with a class that is set by default
 		it('is hidden by default', function(done) {
 			expect(contentSnippet.hasClass('hide')).toBe(true);
 			done();
 		});
 		
+		/* Visibility is toggled (add/remove class) when clicking
+		* the enclosing entryLink.
+		* Can't simulate a click on any element with in the entryLink
+		* because this triggers the current link to the full article.
+		* -> Click simulation commented out.
+		*/
 		it('visibility toggles on click', function(done) {
 			//entryLink.click();
 			expect(contentSnippet.hasClass('hide')).toBe(false);
