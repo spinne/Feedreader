@@ -121,7 +121,7 @@ $(function() {
 		beforeEach(function(done) {
 			loadFeed(0, function() {
 				// Populate entryBefore for "New Feed Selection"
-				entryBefore = $('.entry > h2:first').html();
+				entryBefore = $('.entry:first > h2').html();
 				done();
 			});
 		});
@@ -149,7 +149,7 @@ $(function() {
 				
 				loadFeed(2, function() {
 					// Populate entryAfter
-					entryAfter = $('.entry > h2:first').html();
+					entryAfter = $('.entry:first > h2').html();
 					done();
 				});
 			});
