@@ -52,7 +52,7 @@ $(function() {
 	});
 
 	
-	/* TODO: Write a new test suite named "The menu" */
+	/* Test suite: "The menu" */
 	describe('The menu', function() {
 		/* Menu visibility is managed by toggling the css class 
 		* 'menu-hidden' on body.
@@ -82,39 +82,128 @@ $(function() {
 			menuIcon.click();
 			expect(body.hasClass('menu-hidden')).toBe(true);
 		});
+		
+		/* ADDITIONAL TEST: Menu gets hidden 
+		* when a (new) feed is selected from the menu.
+		*/
+		it('visibility toggles when a feed is selected', function() {
+			var menuIcon = $('.menu-icon-link');
+			var feedListLink = $('ul.feed-list > li > a:last');
+			
+			/* Click 1: Opening menu by clicking the icon
+			* 'menu-hidden' class has to be removed from body.
+			*/
+			menuIcon.click();
+			expect(body.hasClass('menu-hidden')).toBe(false);
+			
+			/* Click 2: Selecting a feed by clicking it in
+			* the menu. The 'menu-hidden' class has to be added
+			* to the body.
+			*/
+			feedListLink.click();
+			expect(body.hasClass('menu-hidden')).toBe(true);
+		});
 	});
 	
 	
-	/* TODO: Write a new test suite named "Initial Entries" */
+	/* Test suite: "Initial Entries" */
 	describe('Initial Entries', function() {
-		/* TODO: Write a test that ensures when the loadFeed
-		* function is called and completes its work, there is at least
-		* a single .entry element within the .feed container.
-		* Remember, loadFeed() is asynchronous so this test will require
-		* the use of Jasmine's beforeEach and asynchronous done() function.
+		/* Test: When the loadFeed function is called and completes 
+		* its work, there is at least a single .entry element within
+		* the .feed container.
 		*/
 		
+		// Variables for nestled test suite "New Feed Selection"
+		var entryBefore;
+		var entryAfter;
+		
+		// Call loadFeed async.
 		beforeEach(function(done) {
 			loadFeed(0, function() {
+				entryBefore = $('.entry > h2:first').html();
 				done();
 			});
 		});
 		
-		it('are loaded', function() {
+		it('are loaded', function(done) {
 			// Get all elements with class .feed that have a .entry child element.
 			var feedContainer = $('.feed').has('.entry');
 			
-			// If loadFeed worked there has to be at least one such container
+			// If loadFeed worked there has to be at least one such container.
 			expect(feedContainer.length).not.toBe(0);
+			done();
+		});
+	
+	
+		/* Test suite: "New Feed Selection" */
+		describe('New Feed Selection', function(){
+			/* Test: When a new feed is loaded by the loadFeed function 
+			* the content actually changes.
+			*/
 			
-			//done();
+			beforeEach(function(done) {
+				$('.feed').empty();
+				
+				loadFeed(2, function() {
+					entryAfter = $('.entry > h2:first').html();
+					done();
+				});
+			});
+			
+			// Reset the loaded feed to feed index 0
+			/* afterEach(function() {
+				$('.feed').empty();
+				loadFeed(0);
+			}); */
+			
+			it('changes content', function(done) {
+				expect(entryAfter).not.toBe(entryBefore);
+				done();
+			});
+			
+		});
+	});
+	
+	
+	/* ADDITIONAL TEST SUITE:  "Article Preview" */
+	describe('Article Preview', function() {
+		/* Test: 
+		*/
+		var entryLink,
+			entry,
+			contentSnippet;
+		
+		beforeEach(function(done) {
+			loadFeed(0, function() {
+				entryLink = $('.entry-link:first');
+				entry = $('.entry-link:first > .entry');
+				contentSnippet = $('.entry-link:first > .entry > p');
+				done();
+			});
 		});
 		
+		it('has content', function(done) {
+			expect(contentSnippet.html()).toBeTruthy();
+			done();
+		});
+		
+		it('has a link to the complete article', function(done) {
+			expect(entry.has('a').length).not.toBe(0);
+			done();
+		});
+		
+		it('is hidden by default', function(done) {
+			expect(contentSnippet.hasClass('hide')).toBe(true);
+			done();
+		});
+		
+		it('visibility toggles on click', function(done) {
+			//entryLink.click();
+			expect(contentSnippet.hasClass('hide')).toBe(false);
+			
+			//entryLink.click();
+			expect(contentSnippet.hasClass('hide')).toBe(true);
+			done();
+		});	
 	});
-	/* TODO: Write a new test suite named "New Feed Selection"
-
-		/* TODO: Write a test that ensures when a new feed is loaded
-		* by the loadFeed function that the content actually changes.
-		* Remember, loadFeed() is asynchronous.
-		*/
 }());
