@@ -71,24 +71,26 @@ variables with content from two different `loadFeed()` calls.
 
 
 ### Additional Tests
-##### Test Suite 'The menu'
-* Added test to ensure the menu gets hidden when a feed is selected from it.
+#### Test Suite 'The menu'
+* Added test to ensure the menu gets hidden when a feed is selected from it. 
 Line 89 in **dev/index.html**: `it('visibility toggles when a feed is selected', function() {});`
 
-This spec passes because the functionality is already implemented.
+**This spec passes because the functionality is already implemented.**
 
-##### Test Suite 'Article Preview'
-**Starts on Line 172 in dev/index.html**
+#### Test Suite 'Article Preview' - Line 172 in dev/index.html
 This suite tests for new feature called "article preview" which
 displays a small section of the article within the feedreader app
 when the entry is clicked. For it to work:
 
 **- there has to be a content snippet within the `.entry > p`**
-:    The app code actually has the basic structure for this but the p within the 
+
+The app code actually has the basic structure for this but the p within the 
 entry does not get populated.
 
-**- there has to be a link to the full article within the `.entry`**
-:    This is a very basic test. Just because there is a link in `.entry`
+
+* **- there has to be a link to the full article within the `.entry`**
+
+This is a very basic test. Just because there is a link in `.entry`
 does not mean there is a link to the full article. Which is why I added
 a class on the link to the full article and check for this selector.
 It might make sense to check if the `href` is set and maybe to put 
@@ -96,12 +98,14 @@ the link to the full article within the `.entry > p` - but this would
 mean the link is hidden until the content snippet is shown. I would
 test if a permanent link to the full article is usable / useful or not.
 
-**- it is hidden by default**
-:    I think for this and the next spec a class that manages visibility
+* **- it is hidden by default**
+
+I think for this and the next spec a class that manages visibility
 is the best option. Which is why I test for the class.
 
-**- visibility of the content snippet toggles when clicked**
-:    This test should check if the class managing the visibility is
+* **- visibility of the content snippet toggles when clicked**
+
+This test should check if the class managing the visibility is
 toggled when the `.entry` or its surrounding element `.entry-link`
 is clicked. If clicked for the first time the class is removed, if clicked
 again the class is added. But I **cannot simulate the click event** because
